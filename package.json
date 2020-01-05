@@ -1,0 +1,25 @@
+{
+  "name": "mul-tis",
+  "version": "1.0.0",
+  "description": "A network simulation game that is in developement.",
+  "main": "main.js",
+  "scripts": {
+    "test": "main"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patc4/MUL-TIS.git"
+  },
+  "author": "patc4",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patc4/MUL-TIS/issues"
+  },
+  "homepage": "https://github.com/patc4/MUL-TIS#readme",
+  "devDependencies": {
+    "electron": "^7.1.7"
+  },
+  "dependencies": {
+    "socket.io": "^2.3.0"
+  }
+}
