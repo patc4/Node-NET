@@ -1,5 +1,5 @@
 {
-  "name": "mul-tis",
+  "name": "Node-NET",
   "version": "1.0.0",
   "description": "A network simulation game that is in developement.",
   "main": "main.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/patc4/MUL-TIS.git"
+    "url": "git+https://github.com/patc4/Node-NET.git"
   },
   "author": "patc4",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/patc4/MUL-TIS/issues"
+    "url": "https://github.com/patc4/Node-NET/issues"
   },
-  "homepage": "https://github.com/patc4/MUL-TIS#readme",
+  "homepage": "https://github.com/patc4/Node-NET#readme",
   "devDependencies": {
     "electron": "^7.1.7"
   },
