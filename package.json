@@ -1,14 +1,25 @@
 {
-    "name": "node-net",
-    "version": "0.0.1",
-    "description": "",
+    "name": "mul-tis",
+    "version": "1.0.0",
+    "description": "A network simulation game that is in developement.",
     "main": "app.js",
-    "license": "MTI",
+    "author": "patc4",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/patc4/MUL-TIS.git"
+    },
+    "bugs": {
+        "url": "https://github.com/patc4/MUL-TIS/issues"
+    },
+    "homepage": "https://github.com/patc4/MUL-TIS#readme",
     "scripts": {
         "start": "electron .",
         "build": "electron-packager . Node-Net --platform=win32 --arch=x64"
     },
-    "dependencies": {},
+    "dependencies": {
+        "socket.io": "^2.3.0"
+    },
     "devDependencies": {
         "electron": "^7.1.7",
         "electron-packager": "^14.1.1"
