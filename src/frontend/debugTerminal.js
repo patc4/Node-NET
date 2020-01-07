@@ -1,8 +1,13 @@
-const {ipcRenderer} = require('electron');
+const { ipcRenderer } = require('electron');
+const { LogTypes } = require('../instructions/logType');
 
 
-document.getElementById("inputCommand").addEventListener("submit", (evt)=>
-{
+const colors = [
+    '#777777', // ECHO
+    '#000000' // LOG
+]
+
+document.getElementById("inputCommand").addEventListener("submit", (evt) => {
     evt.preventDefault();
 
     const input = document.getElementById("textField");
@@ -14,5 +19,11 @@ document.getElementById("inputCommand").addEventListener("submit", (evt)=>
 });
 
 ipcRenderer.on('render-new-log', (event, newLog) => {
-    document.getElementById("logs").innerHTML += `${newLog}<br/>`
+    let logsFormat = '';
+
+    for (let i = 0; i < newLog.length; i++) {
+        logsFormat += `<span style="color: ${colors[newLog[i].logType]}">${newLog[i].logType == 0 ? '>' : ''} ${newLog[i].value}</span><br/>`
+    }
+
+    document.getElementById("logs").innerHTML += logsFormat
 });

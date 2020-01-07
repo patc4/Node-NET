@@ -1,6 +1,10 @@
 import { app, ipcMain, BrowserWindow, IpcMainEvent } from 'electron';
+import {InstructionParser} from './parser/instructionParser';
+import { Log } from './instructions/log';
+import { LogType } from './instructions/logType';
 
 let mainWindow: BrowserWindow;
+let parser: InstructionParser = new InstructionParser();
 
 function createWindow() {
 
@@ -13,8 +17,8 @@ function createWindow() {
         },
     }); 
 
-    // Uncomment to get developer console
-    // mainWindow.webContents.openDevTools()
+    // Uncomment to get developer console for frontend
+   //  mainWindow.webContents.openDevTools()
     
     mainWindow.loadURL(`file://${__dirname}/frontend/index.html`); // here is the absolute path to the frontend
 
@@ -33,9 +37,9 @@ app.on('window-all-closed', () => {
 
 let logs: Array<String> = []
 
-ipcMain.on('add-log', (event: IpcMainEvent, log: String)=>{
-    log = `> ${log}`
-    logs.push(log);
+ipcMain.on('add-log', (event: IpcMainEvent, input: String)=>{
 
-    event.reply('render-new-log', log)
+    const instruction = parser.parse(input);
+
+    event.reply('render-new-log', [new Log(input, LogType.ECHO), ...instruction.run()])
 });
