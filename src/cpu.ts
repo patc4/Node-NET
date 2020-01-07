@@ -12,7 +12,7 @@ class Cpu {
     public memory: Memory;
 
     constructor(id: Number, coresNb: Number){
-        this.id = id
-        this.cores = new Array(coresNb, new Core)
+        this.id = id;
+        this.cores = new Array(coresNb, new Core);
     }
 }

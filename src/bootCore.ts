@@ -1,0 +1,3 @@
+class BootCore extends Core {
+    
+}
