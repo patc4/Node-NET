@@ -2,10 +2,11 @@
   "name": "Node-NET",
   "version": "1.0.0",
   "description": "A network simulation game that is in developement.",
-  "main": "main.js",
+  "main": "app.js",
   "scripts": {
-    "start": "electron .",
-    "build": "electron-packager . Node-Net --platform=win32 --arch=x64"
+    "start": "flow && electron .",
+    "build": "electron-packager . Node-Net --platform=win32 --arch=x64",
+    "docs:build": "documentation build src/** -f html -o docs"
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,14 @@
   },
   "homepage": "https://github.com/patc4/Node-NET#readme",
   "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/preset-flow": "^7.7.4",
+    "documentation": "^12.1.4",
     "electron": "^7.1.7",
-    "electron-packager": "^14.1.1"
+    "electron-packager": "^14.1.1",
+    "flow-bin": "^0.115.0",
+    "flow-remove-types": "^2.115.0"
   },
   "dependencies": {
     "socket.io": "^2.3.0"

@@ -1,0 +1,8 @@
+/**
+ *
+ *
+ * @class Memory
+ */
+class Memory{
+
+}
