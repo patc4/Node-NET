@@ -4,11 +4,12 @@
   "description": "A network simulation game that is in developement.",
   "scripts": {
     "build:dev": "tsc",
+    "copy-files": "copyfiles -u 1 src/frontend/*.html src/frontend/*.css src/frontend/*.js dist/",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "build:prod": "electron-packager . Node-Net --platform=win32 --arch=x64",
     "docs:build": "documentation build src/** -f html -o docs",
-    "start": "npm run build:dev && electron ./dist/app.js"
+    "start": "npm run build:dev && npm run copy-files && electron ./dist/app.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
     "@babel/preset-flow": "^7.7.4",
+    "copyfiles": "^2.1.1",
     "documentation": "^12.1.4",
     "electron": "^7.1.7",
     "electron-packager": "^14.1.1",
