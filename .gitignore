@@ -105,3 +105,5 @@ dist
 
 # Windows build
 Node-Net-win32-x64/
+
+dist/

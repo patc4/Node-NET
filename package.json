@@ -2,11 +2,13 @@
   "name": "Node-NET",
   "version": "1.0.0",
   "description": "A network simulation game that is in developement.",
-  "main": "app.js",
   "scripts": {
-    "start": "flow && electron .",
-    "build": "electron-packager . Node-Net --platform=win32 --arch=x64",
-    "docs:build": "documentation build src/** -f html -o docs"
+    "build:dev": "tsc",
+    "watch": "tsc -w",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "build:prod": "electron-packager . Node-Net --platform=win32 --arch=x64",
+    "docs:build": "documentation build src/** -f html -o docs",
+    "start": "npm run build:dev && electron ./dist/app.js"
   },
   "repository": {
     "type": "git",
@@ -25,8 +27,8 @@
     "documentation": "^12.1.4",
     "electron": "^7.1.7",
     "electron-packager": "^14.1.1",
-    "flow-bin": "^0.115.0",
-    "flow-remove-types": "^2.115.0"
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.4"
   },
   "dependencies": {
     "socket.io": "^2.3.0"

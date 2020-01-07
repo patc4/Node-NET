@@ -3,6 +3,6 @@
  * 
  * @class Core
  */
-class Core{
+class Core {
 
 }
