@@ -1,25 +1,26 @@
 import { app, ipcMain, BrowserWindow, IpcMainEvent } from 'electron';
-import {InstructionParser} from './parser/instructionParser';
+import { InstructionParser } from './parser/instructionParser';
 import { Log } from './instructions/log';
 import { LogType } from './instructions/logType';
+const electron = require('electron');
 
 let mainWindow: BrowserWindow;
 let parser: InstructionParser = new InstructionParser();
 
 function createWindow() {
 
-    mainWindow = new BrowserWindow({ 
-        width: 1800, 
+    mainWindow = new BrowserWindow({
+        width: 1800,
         height: 1200,
-        webPreferences: { 
+        webPreferences: {
             webSecurity: false,
             nodeIntegration: true
         },
-    }); 
+    });
 
     // Uncomment to get developer console for frontend
-   //  mainWindow.webContents.openDevTools()
-    
+    //  mainWindow.webContents.openDevTools()
+
     mainWindow.loadURL(`file://${__dirname}/frontend/index.html`); // here is the absolute path to the frontend
 
     mainWindow.on('closed', () => {
@@ -37,9 +38,13 @@ app.on('window-all-closed', () => {
 
 let logs: Array<String> = []
 
-ipcMain.on('add-log', (event: IpcMainEvent, input: String)=>{
+ipcMain.on('add-log', (event: IpcMainEvent, input: String) => {
 
     const instruction = parser.parse(input);
 
     event.reply('render-new-log', [new Log(input, LogType.ECHO), ...instruction.run()])
 });
+
+electron.dialog.showErrorBox = (title, content) => {
+    console.log(`${title}\n${content}`);
+};
