@@ -4,7 +4,8 @@ const { LogTypes } = require('../instructions/logType');
 
 const colors = [
     '#777777', // ECHO
-    '#000000' // LOG
+    '#000000', // LOG
+    '#FF0000' // ERROR
 ]
 
 document.getElementById("inputCommand").addEventListener("submit", (evt) => {

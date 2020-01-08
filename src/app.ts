@@ -19,7 +19,7 @@ function createWindow() {
     });
 
     // Uncomment to get developer console for frontend
-    //  mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
 
     mainWindow.loadURL(`file://${__dirname}/frontend/index.html`); // here is the absolute path to the frontend
 
@@ -40,9 +40,17 @@ let logs: Array<String> = []
 
 ipcMain.on('add-log', (event: IpcMainEvent, input: String) => {
 
-    const instruction = parser.parse(input);
+    const parserReturn = parser.parse(input);
+    let logsReturn = [new Log(input, LogType.ECHO)];
 
-    event.reply('render-new-log', [new Log(input, LogType.ECHO), ...instruction.run()])
+    if (parserReturn.error == null) {
+        logsReturn.push(...parserReturn.instruction.run())
+    }
+    else(
+        logsReturn.push(new Log(parserReturn.error.message, LogType.ERROR))
+    )
+
+    event.reply('render-new-log', logsReturn)
 });
 
 electron.dialog.showErrorBox = (title, content) => {

@@ -1,4 +1,5 @@
 export enum LogType {
     ECHO,
-    LOG
+    LOG,
+    ERROR
 }
