@@ -109,4 +109,4 @@ Node-Net-win32-x64/
 dist/
 
 package-lock.json
-yarn-lock.json
+**/yarn.lock
