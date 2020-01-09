@@ -2,6 +2,7 @@ import { app, ipcMain, BrowserWindow, IpcMainEvent } from 'electron';
 import { InstructionParser } from './parser/instructionParser';
 import { Log } from './instructions/log';
 import { LogType } from './instructions/logType';
+
 const electron = require('electron');
 
 let mainWindow: BrowserWindow;
