@@ -5,7 +5,7 @@ import { numSocket } from '../editor';
 
 const DisplayComponent = (props) => {
     return (
-        <input key={props.key} type="text" readOnly>{props.value}</input>
+        <input key={props.key} type="text" readOnly value={props.value}/>
     );
 }
 
@@ -14,7 +14,12 @@ class DisplayControl extends Rete.Control {
         super(key);
         this.data.render = 'react';
         this.component = DisplayComponent;
-        this.props = { emitter, key , value};
+        this.props = { emitter, key, value };
+    }
+
+    setValue (value) {
+        this.props = {...this.props, value}
+        this.update();
     }
 }
 
@@ -24,16 +29,19 @@ export class DisplayNode extends Rete.Component {
     }
 
     builder(node) {
-        node.data.char = '';
+        node.data.value = '';
 
-        var ctrl = new DisplayControl(this.editor, "char1", node.data.value);
+        const ctrl = new DisplayControl(this.editor, "ctrl", node.data.value);
         node.addControl(ctrl)
-        let inp = new Rete.Input('char', 'String', numSocket);
+        const inp = new Rete.Input('char', 'String', numSocket);
         node.addInput(inp);
         return node
     }
 
     worker(node, inputs, outputs) {
-        node.data.value = inputs['char'];
+        if (inputs['char'].length > 0)
+            node.data.value = inputs['char'][0];
+        const ctrl = this.editor.nodes.find(n => n.id === node.id).controls.get('ctrl')
+        ctrl.setValue(node.data.value)
     }
 }

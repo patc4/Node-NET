@@ -5,7 +5,7 @@ import { numSocket } from '../editor';
 
 const AddComponent = (props) => {
     return (
-        <div/>
+        <div />
     );
 }
 
@@ -15,6 +15,11 @@ class AddControl extends Rete.Control {
         this.data.render = 'react';
         this.component = AddComponent;
         this.props = { emitter, key };
+    }
+    
+    setValue (value) {
+        this.props = {...this.props, value}
+        this.update();
     }
 }
 
@@ -27,7 +32,7 @@ export class AddNode extends Rete.Component {
         var in1 = new Rete.Input("str1", "String", numSocket);
         var in2 = new Rete.Input("str2", "String", numSocket);
         var out = new Rete.Output("str", "String", numSocket);
-        var ctrl = new AddControl(this.editor, "Add");
+        var ctrl = new AddControl(this.editor, "ctrl");
 
         return node
             .addInput(in1)
@@ -37,6 +42,7 @@ export class AddNode extends Rete.Component {
     }
 
     worker(node, inputs, outputs) {
-        outputs['str'] = inputs["str1"] + inputs["str2"]
+        if (inputs["str1"].length > 0 && inputs["str2"].length > 0)
+            outputs['str'] = inputs["str1"][0] + inputs["str2"][0]
     }
 }

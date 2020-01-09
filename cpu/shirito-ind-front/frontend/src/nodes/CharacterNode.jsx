@@ -6,8 +6,15 @@ import { numSocket } from '../editor';
 const CharComponent = (props) => {
     const [state, setState] = useState({ value: '' })
 
+    const update = (event) => {
+        const val = event.target.value;
+        props.putData('val', val);
+        props.emitter.trigger('process');
+        setState(val);
+    };
+
     return (
-        <input key={props.key} type="text" onChange={(event) => setState(event.target.value)} />
+        <input key={props.key} type="text" onChange={(event) => update(event)} />
     );
 }
 
@@ -16,7 +23,7 @@ class CharControl extends Rete.Control {
         super(key);
         this.data.render = 'react';
         this.component = CharComponent;
-        this.props = { emitter, key };
+        this.props = { emitter, key, putData: this.putData.bind(this)};
     }
 }
 
@@ -26,16 +33,16 @@ export class CharacterNode extends Rete.Component {
     }
 
     builder(node) {
-        node.data.char = '';
+        node.data.val = '';
 
-        var ctrl = new CharControl(this.editor, "char1");
+        const ctrl = new CharControl(this.editor, "char1");
         node.addControl(ctrl)
-        let out = new Rete.Output('char', 'String', numSocket);
+        const out = new Rete.Output('char', 'String', numSocket);
         node.addOutput(out);
         return node
     }
 
     worker(node, inputs, outputs) {
-        outputs['char'] = node.data.char;
+        outputs['char'] = node.data.val;
     }
 }

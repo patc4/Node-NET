@@ -4,7 +4,6 @@ import ReactRenderPlugin from "rete-react-render-plugin";
 import ConnectionPlugin from "rete-connection-plugin";
 import ContextMenuPlugin from "rete-context-menu-plugin";
 import AreaPlugin from "rete-area-plugin";
-import { MyNode } from "./Node";
 import {CharacterNode} from './nodes/CharacterNode';
 import {AddNode} from './nodes/AddNode';
 import {DisplayNode} from './nodes/DisplayNode';
@@ -16,9 +15,7 @@ export default async function(container) {
 
   var editor = new Rete.NodeEditor("demo@0.1.0", container);
   editor.use(ConnectionPlugin);
-  editor.use(ReactRenderPlugin, {
-    component: MyNode
-  });
+  editor.use(ReactRenderPlugin);
   editor.use(ContextMenuPlugin);
 
   var engine = new Rete.Engine("demo@0.1.0");
@@ -29,7 +26,7 @@ export default async function(container) {
   });
 
   editor.on(
-    "process nodecreated noderemoved connectioncreated connectionremoved",
+    "process keydown nodecreated noderemoved connectioncreated connectionremoved",
     async () => {
       console.log("process");
       await engine.abort();
