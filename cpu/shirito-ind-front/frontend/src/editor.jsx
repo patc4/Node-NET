@@ -1,4 +1,4 @@
-import "regenerator-runtime/runtime";q
+import "regenerator-runtime/runtime";
 import Rete from "rete";
 import ReactRenderPlugin from "rete-react-render-plugin";
 import ConnectionPlugin from "rete-connection-plugin";
