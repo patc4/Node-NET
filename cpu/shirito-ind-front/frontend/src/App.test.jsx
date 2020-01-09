@@ -1,8 +1,11 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render,queryByAttribute  } from '@testing-library/react';
 import App from './App';
 
+
+const getById = queryByAttribute.bind(null, 'id');
+
 test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  expect(linkElement).toBeInTheDocument();
+  const { container, getByText } = render(<App />);
+  expect(getById(container, 'logo')).toBeInTheDocument();
 });

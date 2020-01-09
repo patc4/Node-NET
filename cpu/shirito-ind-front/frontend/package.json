@@ -20,6 +20,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
+    "regenerator-runtime": "^0.13.3",
     "rete": "1.4.1",
     "rete-area-plugin": "0.2.1",
     "rete-connection-plugin": "0.7.0",

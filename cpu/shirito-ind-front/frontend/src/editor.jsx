@@ -1,3 +1,4 @@
+import "regenerator-runtime/runtime";q
 import Rete from "rete";
 import ReactRenderPlugin from "rete-react-render-plugin";
 import ConnectionPlugin from "rete-connection-plugin";
@@ -30,7 +31,6 @@ class AddComponent extends Rete.Component {
 }
 
 export default async function(container) {
-  console.log(container);
   var components = [new AddComponent()];
 
   var editor = new Rete.NodeEditor("demo@0.1.0", container);
