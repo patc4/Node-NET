@@ -4,14 +4,17 @@ import ReactRenderPlugin from "rete-react-render-plugin";
 import ConnectionPlugin from "rete-connection-plugin";
 import ContextMenuPlugin from "rete-context-menu-plugin";
 import AreaPlugin from "rete-area-plugin";
-import {CharacterNode} from './nodes/CharacterNode';
-import {AddNode} from './nodes/AddNode';
-import {DisplayNode} from './nodes/DisplayNode';
+import { CharacterNode } from './nodes/CharacterNode';
+import { AddNode } from './nodes/AddNode';
+import { DisplayNode } from './nodes/DisplayNode';
+import { TestNode } from "./nodes/TestNode";
 
 export let numSocket = new Rete.Socket("Number value");
+export let execSocket = new Rete.Socket("Execute");
+export let testSocket = new Rete.Socket("Execute Test");
 
-export default async function(container) {
-  var components = [new AddNode(), new CharacterNode(), new DisplayNode()];
+export default async function (container) {
+  var components = [new AddNode(), new CharacterNode(), new DisplayNode(), new TestNode()];
 
   var editor = new Rete.NodeEditor("demo@0.1.0", container);
   editor.use(ConnectionPlugin);
