@@ -48,11 +48,13 @@ export class AddNode extends OperationComponent {
     worker(node, inputs, outputs) {
         super.worker(node, inputs, outputs);
 
-        if (!this.shouldCompute)
+        if (!this.shouldCompute) {
+            outputs["str"] = '';
             return
+        }
 
-        var n1 = inputs["str1"].length ? inputs["str1"][0] : node.data.str1;
-        var n2 = inputs["str2"].length ? inputs["str2"][0] : node.data.nstr2um2;
+        var n1 = inputs["str1"].length ? inputs["str1"][0] : '';
+        var n2 = inputs["str2"].length ? inputs["str2"][0] : '';
         var sum = n1 + n2;
 
         outputs["str"] = sum;
