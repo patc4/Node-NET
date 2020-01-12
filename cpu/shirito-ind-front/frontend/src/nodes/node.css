@@ -16,12 +16,7 @@
     position: absolute;
 }
 
-
 .socket-spacer {
     margin-top: 20px;
     margin-bottom: 20px;
-}
-
-.node.selected {
-    border-color: green;
 }
