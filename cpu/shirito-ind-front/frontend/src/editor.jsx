@@ -36,6 +36,12 @@ export default async function (container) {
       'Click me'() { console.log('Works!') }
     }
   });
+  editor.use(AreaPlugin, {
+    background: false,
+    snap: true,
+    scaleExtent: { min: 0.1, max: 1 },
+    translateExtent: { width: 5000, height: 4000 }
+  })
 
   var engine = new Rete.Engine("demo@0.1.0");
 
@@ -68,6 +74,6 @@ export default async function (container) {
   });
 
   editor.view.resize();
-  AreaPlugin.zoomAt(editor);
+  AreaPlugin.zoomAt(editor, editor.nodes);
   editor.trigger("process");
 }
