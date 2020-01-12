@@ -1,11 +1,11 @@
 .top-execution-socket {
-    margin-left: 100px;
-    margin-top: -18px;
+    margin-left: 5vw;
+    margin-top: -1vw;
 }
 
 .bot-execution-socket {
-    margin-left: 80px;
-    margin-top: -20px;
+    margin-left: 4vw;
+    margin-top: -1vw;
     text-align: left;
     padding-bottom: 10px;
 }
@@ -20,3 +20,8 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.App .node.selected {
+    background: rgba(110, 136, 255, 0.8);
+    border: 2px solid rgb(6, 75, 6);
+  }
