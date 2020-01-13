@@ -20,19 +20,35 @@ export let storageSocket = new Rete.Socket("Storage");
 
 export default async function (container) {
   var components = [new AddNode(), new CharacterNode(), new DisplayNode(), new StartNode()];
-  var excludeFromContextMenu = ["start"]
+  var excludeFromContextMenu = [new StartNode().name]
+  var storageNodes = [new DisplayNode().name]
+  var operationNodes = [new AddNode().name]
+  var variablesNodes = [new CharacterNode().name]
 
   var editor = new Rete.NodeEditor("demo@0.1.0", container);
   editor.use(ConnectionPlugin);
   editor.use(ReactRenderPlugin);
   editor.use(ContextMenuPlugin, {
     searchBar: false,
-    delay: 1000,
+    delay: 500,
     allocate(component) {
-      if (excludeFromContextMenu.indexOf(component.name.toLowerCase()) !== -1) {
+      if (excludeFromContextMenu.indexOf(component.name) !== -1) {
         return null;
       }
-      return ['Create Node'];
+
+      if (variablesNodes.indexOf(component.name) !== -1) {
+        return ['Create Node', 'Variable'];
+      }
+
+      if (operationNodes.indexOf(component.name) !== -1) {
+        return ['Create Node', 'Operation'];
+      }
+
+      if (storageNodes.indexOf(component.name) !== -1) {
+        return ['Create Node', 'Storage'];
+      }
+
+      return null;
     },
     rename(component) {
       return component.name;
@@ -65,9 +81,9 @@ export default async function (container) {
   );
 
   editor.on('connectionpick', io => {
-    if(io instanceof Rete.Output && !io.multipleConnections && io.hasConnection())
+    if (io instanceof Rete.Output && !io.multipleConnections && io.hasConnection())
       return false; // prevent connection picking for output with exist connection and allowed only single connection
-})
+  })
 
 
   editor.fromJSON({
