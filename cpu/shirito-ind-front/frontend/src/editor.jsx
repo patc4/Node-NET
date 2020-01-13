@@ -64,6 +64,12 @@ export default async function (container) {
     }
   );
 
+  editor.on('connectionpick', io => {
+    if(io instanceof Rete.Output && !io.multipleConnections && io.hasConnection())
+      return false; // prevent connection picking for output with exist connection and allowed only single connection
+})
+
+
   editor.fromJSON({
     id: "demo@0.1.0",
     nodes: {

@@ -103,8 +103,8 @@ export class OperationComponent extends Rete.Component {
     }
 
     builder(node) {
-        var inp = new Rete.Input("exec", "Execution", execSocket);
-        var out = new Rete.Output("exec", "Execution", execSocket);
+        var inp = new Rete.Input("exec", "Execution", execSocket, false);
+        var out = new Rete.Output("exec", "Execution", execSocket, false);
         return node
             .addInput(inp)
             .addOutput(out);

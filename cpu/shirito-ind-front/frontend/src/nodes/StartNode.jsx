@@ -40,7 +40,7 @@ export class StartNode extends Rete.Component {
     }
 
     builder(node) {
-        var out = new Rete.Output("exec", "Execution", execSocket);
+        var out = new Rete.Output("exec", "Execution", execSocket, false);
         return node.addOutput(out);
     }
 
