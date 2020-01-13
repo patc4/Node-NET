@@ -1,9 +1,13 @@
 import "regenerator-runtime/runtime";
+import "./editor.css";
+
 import Rete from "rete";
 import ReactRenderPlugin from "rete-react-render-plugin";
 import ConnectionPlugin from "rete-connection-plugin";
 import ContextMenuPlugin from "rete-context-menu-plugin";
+import MinimapPlugin from 'rete-minimap-plugin';
 import AreaPlugin from "rete-area-plugin";
+
 import { CharacterNode } from './nodes/CharacterNode';
 import { AddNode } from './nodes/AddNode';
 import { DisplayNode } from './nodes/DisplayNode';
@@ -12,6 +16,7 @@ import { StartNode } from './nodes/StartNode';
 export let numSocket = new Rete.Socket("Number value");
 export let execSocket = new Rete.Socket("Execute");
 export let testSocket = new Rete.Socket("Execute Test");
+
 
 export default async function (container) {
   var components = [new AddNode(), new CharacterNode(), new DisplayNode(), new StartNode()];
@@ -42,6 +47,7 @@ export default async function (container) {
     scaleExtent: { min: 0.1, max: 1 },
     translateExtent: { width: 5000, height: 4000 }
   })
+  editor.use(MinimapPlugin);
 
   var engine = new Rete.Engine("demo@0.1.0");
 

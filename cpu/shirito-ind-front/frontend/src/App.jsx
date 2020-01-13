@@ -8,7 +8,7 @@ const App = () => {
     <div className="App">
       <img src="logo.png" id="logo"/>
       <div style={{ textAlign: "left", marginLeft: "5vw", width: "90vw", height: "70vh" }}>
-        <div ref={el => init(el)} style={{border: "1px solid black"}}/>
+        <div ref={el => init(el)} style={{border: "1px solid black", position: "absolute"}}/>
       </div>
     </div>
   );
