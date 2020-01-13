@@ -8,10 +8,11 @@ import ContextMenuPlugin from "rete-context-menu-plugin";
 import MinimapPlugin from 'rete-minimap-plugin';
 import AreaPlugin from "rete-area-plugin";
 
-import { CharacterNode } from './nodes/CharacterNode';
-import { AddNode } from './nodes/AddNode';
-import { DisplayNode } from './nodes/DisplayNode';
+import { CharacterNode } from './nodes/variables/CharacterNode';
+import { AddNode } from './nodes/operations/AddNode';
+import { DisplayNode } from './nodes/storage/DisplayNode';
 import { StartNode } from './nodes/StartNode';
+import { RegisterNode } from "./nodes/storage/Register";
 
 export let numSocket = new Rete.Socket("Number value");
 export let execSocket = new Rete.Socket("Execute");
@@ -19,9 +20,9 @@ export let storageSocket = new Rete.Socket("Storage");
 
 
 export default async function (container) {
-  var components = [new AddNode(), new CharacterNode(), new DisplayNode(), new StartNode()];
+  var components = [new AddNode(), new CharacterNode(), new DisplayNode(), new StartNode(), new RegisterNode()];
   var excludeFromContextMenu = [new StartNode().name]
-  var storageNodes = [new DisplayNode().name]
+  var storageNodes = [new DisplayNode().name, new RegisterNode().name]
   var operationNodes = [new AddNode().name]
   var variablesNodes = [new CharacterNode().name]
 

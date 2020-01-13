@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Rete, { Control } from "rete";
 
-import { numSocket } from '../editor';
+import { numSocket } from '../../editor';
 
 const CharComponent = (props) => {
     const [state, setState] = useState({ value: '' })

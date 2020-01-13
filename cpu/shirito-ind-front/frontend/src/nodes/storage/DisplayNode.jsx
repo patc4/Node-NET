@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Rete, { Control } from "rete";
 
-import { storageSocket } from '../editor';
+import { storageSocket } from '../../editor';
 
 const DisplayComponent = (props) => {
     return (

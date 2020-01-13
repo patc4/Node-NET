@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Rete, { Control } from "rete";
 
-import { numSocket, storageSocket } from '../editor';
+import { numSocket, storageSocket } from '../../editor';
 
 import { OperationComponent } from './OperationNode';
-import operations from '../stores/operations';
+import operations from '../../stores/operations';
 
 const AddComponent = (props) => {
     return (

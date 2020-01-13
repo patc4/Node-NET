@@ -1,11 +1,11 @@
-import "./node.css"
+import "../node.css"
 
 import React, { useEffect, useState } from "react";
 import Rete from "rete";
 import ReactRenderPlugin, { Node, Socket, Control } from 'rete-react-render-plugin';
 
-import { numSocket, execSocket } from '../editor';
-import operations from "../stores/operations";
+import { numSocket, execSocket } from '../../editor';
+import operations from "../../stores/operations";
 
 
 class OperationNode extends Node {
