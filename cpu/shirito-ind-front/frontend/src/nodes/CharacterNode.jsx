@@ -5,6 +5,10 @@ import { numSocket } from '../editor';
 
 const CharComponent = (props) => {
     const [state, setState] = useState({ value: '' })
+    let asciiChars = [];
+    for (var i = 32; i <= 126; i++) {
+        asciiChars.push(String.fromCharCode(i));
+    }
 
     const update = (event) => {
         const val = event.target.value;
@@ -13,8 +17,12 @@ const CharComponent = (props) => {
         setState(val);
     };
 
+ 
+
     return (
-        <input key={props.key} type="text" onChange={(event) => update(event)} />
+        <select  key={props.key} onChange={(event) => update(event)}>
+            {asciiChars.map(c => (<option key={asciiChars.indexOf(c)} value={c}>{c}</option>))}
+        </select >
     );
 }
 
@@ -23,7 +31,7 @@ class CharControl extends Rete.Control {
         super(key);
         this.data.render = 'react';
         this.component = CharComponent;
-        this.props = { emitter, key, putData: this.putData.bind(this)};
+        this.props = { emitter, key, putData: this.putData.bind(this) };
     }
 }
 
