@@ -4,6 +4,7 @@ import Rete, { Control } from "rete";
 import { numSocket, storageSocket } from '../editor';
 
 import { OperationComponent } from './OperationNode';
+import operations from '../stores/operations';
 
 const AddComponent = (props) => {
     return (
@@ -48,8 +49,11 @@ export class AddNode extends OperationComponent {
     worker(node, inputs, outputs) {
         super.worker(node, inputs, outputs);
 
-        if (!this.shouldCompute) {
+        const out = this.editor.nodes.find(n => n.id === node.id).outputs.get('str')
+
+        if (!this.shouldCompute || !inputs["str1"].length || !inputs["str2"].length || out.connections.length === 0) {
             outputs["str"] = '';
+            operations.removeOperation(node.id);
             return
         }
 
@@ -58,5 +62,6 @@ export class AddNode extends OperationComponent {
         var sum = n1 + n2;
 
         outputs["str"] = sum;
+        operations.addNewOperation(node.id);
     }
 }

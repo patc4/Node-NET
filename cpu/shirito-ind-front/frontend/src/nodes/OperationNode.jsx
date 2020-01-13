@@ -5,6 +5,7 @@ import Rete from "rete";
 import ReactRenderPlugin, { Node, Socket, Control } from 'rete-react-render-plugin';
 
 import { numSocket, execSocket } from '../editor';
+import operations from "../stores/operations";
 
 
 class OperationNode extends Node {
@@ -111,11 +112,14 @@ export class OperationComponent extends Rete.Component {
     }
 
     worker(node, inputs, outputs) {
-        if (inputs['exec'][0])
+        if (inputs['exec'][0]){
             this.shouldCompute = true;
+        }
         else {
             this.shouldCompute = false;
+            operations.removeOperation(node.id);
         }
-        outputs['exec'] = this.shouldCompute;
+
+        outputs['exec'] = true;
     }
 }
