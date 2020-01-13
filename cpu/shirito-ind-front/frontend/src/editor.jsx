@@ -27,7 +27,7 @@ export default async function (container) {
   editor.use(ReactRenderPlugin);
   editor.use(ContextMenuPlugin, {
     searchBar: false,
-    delay: 100,
+    delay: 1000,
     allocate(component) {
       if (excludeFromContextMenu.indexOf(component.name.toLowerCase()) !== -1) {
         return null;
@@ -38,7 +38,6 @@ export default async function (container) {
       return component.name;
     },
     items: {
-      'Click me'() { console.log('Works!') }
     }
   });
   editor.use(AreaPlugin, {

@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "A network simulation game that is in developement.",
   "scripts": {
-    "build:dev": "tsc",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
+    "build:dev": "tsc",
     "build:prod": "electron-packager . Node-Net --platform=win32 --arch=x64",
     "docs:build": "documentation build src/** -f html -o docs",
+    "build":"npm run build:dev",
     "start": "npm run build:dev && electron ./dist/src/app.js"
   },
   "repository": {

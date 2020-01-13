@@ -2,3 +2,24 @@
   right: 0 !important;
   top: 0 !important;
 }
+
+.editor {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.node-editor {
+  border: 1px solid black;
+  position: absolute;
+  height: 80vh;
+}
+
+.container {
+  overflow: hidden;
+  text-align: left;
+  margin-left: 5vw;
+  width: 90vw;
+  height: 70vh;
+}
