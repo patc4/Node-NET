@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Rete, { Control } from "rete";
 
-import { numSocket } from '../editor';
+import { storageSocket } from '../editor';
 
 const DisplayComponent = (props) => {
     return (
@@ -33,14 +33,14 @@ export class DisplayNode extends Rete.Component {
 
         const ctrl = new DisplayControl(this.editor, "ctrl", node.data.value);
         node.addControl(ctrl)
-        const inp = new Rete.Input('char', 'String', numSocket);
+        const inp = new Rete.Input('str', 'Storage', storageSocket);
         node.addInput(inp);
         return node
     }
 
     worker(node, inputs, outputs) {
-        if (inputs['char'].length > 0)
-            node.data.value = inputs['char'][0];
+        if (inputs['str'].length > 0)
+            node.data.value = inputs['str'][0];
         const ctrl = this.editor.nodes.find(n => n.id === node.id).controls.get('ctrl')
         ctrl.setValue(node.data.value)
     }

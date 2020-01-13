@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Rete, { Control } from "rete";
 
-import { numSocket } from '../editor';
+import { numSocket, storageSocket } from '../editor';
 
 import { OperationComponent } from './OperationNode';
 
@@ -35,7 +35,7 @@ export class AddNode extends OperationComponent {
 
         var in1 = new Rete.Input("str1", "String", numSocket);
         var in2 = new Rete.Input("str2", "String", numSocket);
-        var out = new Rete.Output("str", "String", numSocket);
+        var out = new Rete.Output("str", "Storage", storageSocket);
         var ctrl = new AddControl(this.editor, "ctrl");
 
         return node

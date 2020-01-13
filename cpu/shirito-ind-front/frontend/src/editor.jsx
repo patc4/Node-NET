@@ -15,7 +15,7 @@ import { StartNode } from './nodes/StartNode';
 
 export let numSocket = new Rete.Socket("Number value");
 export let execSocket = new Rete.Socket("Execute");
-export let testSocket = new Rete.Socket("Execute Test");
+export let storageSocket = new Rete.Socket("Storage");
 
 
 export default async function (container) {
