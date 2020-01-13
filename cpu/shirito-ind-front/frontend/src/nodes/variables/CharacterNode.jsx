@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Rete, { Control } from "rete";
 
-import { numSocket } from '../../editor';
+import { variableSocket } from '../../editor';
 
 const CharComponent = (props) => {
     const [state, setState] = useState({ value: '' })
@@ -45,12 +45,12 @@ export class CharacterNode extends Rete.Component {
 
         const ctrl = new CharControl(this.editor, "char1");
         node.addControl(ctrl)
-        const out = new Rete.Output('char', 'String', numSocket);
+        const out = new Rete.Output('char', 'Variable', variableSocket);
         node.addOutput(out);
         return node
     }
 
     worker(node, inputs, outputs) {
-        outputs['char'] = node.data.val;
+        outputs['char'] = {type:"string", value:node.data.val};
     }
 }

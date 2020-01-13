@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Rete, { Control } from "rete";
 
-import { storageSocket } from '../../editor';
+import { variableSocket } from '../../editor';
 import storage from "../../stores/storage";
 
 const RegisterComponent = (props) => {
@@ -38,9 +38,9 @@ class RegisterControl extends Rete.Control {
     }
 }
 
-export class RegisterNode extends Rete.Component {
+export class RegisterVariableNode extends Rete.Component {
     constructor() {
-        super('Register');
+        super('RegisterVar');
         this.regId = null;
     }
 
@@ -49,16 +49,14 @@ export class RegisterNode extends Rete.Component {
 
         const ctrl = new RegisterControl(this.editor, "reg");
         node.addControl(ctrl)
-        const inp = new Rete.Input('str', 'Storage', storageSocket);
-        node.addInput(inp);
+        const out = new Rete.Output('str', 'Variable', variableSocket);
+        node.addOutput(out);
         return node
     }
 
 
     worker(node, inputs, outputs) {
-        if (inputs['str'].length > 0) {
-            console.log(inputs['str'][0])
-            storage.setRegisterValue(node.data.regId, inputs['str'][0])
-        }
+        console.log(storage.getRegisters());
+        outputs['str'] = storage.getRegisters()[node.data.regId]
     }
 }

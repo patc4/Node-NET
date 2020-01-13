@@ -13,18 +13,21 @@ import { AddNode } from './nodes/operations/AddNode';
 import { DisplayNode } from './nodes/storage/DisplayNode';
 import { StartNode } from './nodes/StartNode';
 import { RegisterNode } from "./nodes/storage/Register";
+import { RegisterVariableNode } from "./nodes/variables/Register";
 
-export let numSocket = new Rete.Socket("Number value");
 export let execSocket = new Rete.Socket("Execute");
 export let storageSocket = new Rete.Socket("Storage");
+export let variableSocket = new Rete.Socket("Variable");
+
+
 
 
 export default async function (container) {
-  var components = [new AddNode(), new CharacterNode(), new DisplayNode(), new StartNode(), new RegisterNode()];
+  var components = [new AddNode(), new CharacterNode(), new DisplayNode(), new StartNode(), new RegisterNode(), new RegisterVariableNode()];
   var excludeFromContextMenu = [new StartNode().name]
   var storageNodes = [new DisplayNode().name, new RegisterNode().name]
   var operationNodes = [new AddNode().name]
-  var variablesNodes = [new CharacterNode().name]
+  var variablesNodes = [new CharacterNode().name, new RegisterVariableNode().name]
 
   var editor = new Rete.NodeEditor("demo@0.1.0", container);
   editor.use(ConnectionPlugin);

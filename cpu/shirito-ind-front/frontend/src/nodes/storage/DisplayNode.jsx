@@ -5,7 +5,7 @@ import { storageSocket } from '../../editor';
 
 const DisplayComponent = (props) => {
     return (
-        <input key={props.key} type="text" readOnly value={props.value}/>
+        <input key={props.key} type="text" readOnly value={props.value} />
     );
 }
 
@@ -17,8 +17,8 @@ class DisplayControl extends Rete.Control {
         this.props = { emitter, key, value };
     }
 
-    setValue (value) {
-        this.props = {...this.props, value}
+    setValue(value) {
+        this.props = { ...this.props, value }
         this.update();
     }
 }
@@ -39,8 +39,9 @@ export class DisplayNode extends Rete.Component {
     }
 
     worker(node, inputs, outputs) {
-        if (inputs['str'].length > 0)
-            node.data.value = inputs['str'][0];
+        if (inputs['str'].length > 0) {
+            node.data.value = inputs['str'][0].value.toString();
+        }
         const ctrl = this.editor.nodes.find(n => n.id === node.id).controls.get('ctrl')
         ctrl.setValue(node.data.value)
     }

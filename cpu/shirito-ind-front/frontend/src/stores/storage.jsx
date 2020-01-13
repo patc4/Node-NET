@@ -1,4 +1,4 @@
-import {Subject} from 'rxjs';
+import { Subject } from 'rxjs';
 
 const subject = new Subject();
 
@@ -11,15 +11,16 @@ const storage = {
     init: () => subject.next(state),
     subscribe: setState => subject.subscribe(setState),
     unsubscribe: () => subject.unsubscribe(),
-    setRegisterValue: (regId,newValue) => {
-        let newRegisters = {...state.registers};
-        newRegisters[regId] = newRegisters;
+    setRegisterValue: (regId, newValue) => {
+        let newRegisters = { ...state.registers };
+        newRegisters[regId] = newValue;
         state = {
             ...state,
-            operationsId: newRegisters,
+            registers: newRegisters,
         };
         subject.next(state);
     },
+    getRegisters: () => { return state.registers },
     initialState
 };
 
